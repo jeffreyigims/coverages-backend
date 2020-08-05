@@ -5,7 +5,7 @@ class CoveragesController < ApplicationController
   include Orderable
 
   BOOLEAN_FILTERING_PARAMS = [[:verified, :unverified]]
-  PARAM_FILTERING_PARAMS = [:for_league, :for_club, :for_club_group, :for_carrier, :for_broker, :for_user]
+  PARAM_FILTERING_PARAMS = [:for_league, :for_club, :for_club_group, :for_carrier, :for_broker, :for_user, :for_sub_category, :for_broker]
   ORDERING_PARAMS = []
 
   def index
@@ -45,7 +45,7 @@ class CoveragesController < ApplicationController
   def update
     if @coverage.update(coverage_params)
       render json: CoverageSerializer.new(@coverage).serializable_hash
-    else 
+    else
       render json: @coverage.errors, status: :unprocessable_entity
     end
   end

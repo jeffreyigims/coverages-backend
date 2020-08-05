@@ -27,20 +27,26 @@ class SubCategoriesController < ApplicationController
 
   def create
     @sub_category = SubCategory.new(sub_category_params)
-    if !@sub_category.save
+    if @sub_category.save
+      render json: SubCategorySerializer.new(@sub_category).serializable_hash
+    else
       render json: @sub_category.errors, status: :unprocessable_entity
     end
   end
 
   def update
-    if !@sub_category.update(sub_category_params)
+    if @sub_category.update(sub_category_params)
+      render json: SubCategorySerializer.new(@sub_category).serializable_hash
+    else
       render json: @sub_category.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     @sub_category.destroy
-    if !@sub_category.destroyed?
+    if @sub_category.destroyed?
+      render json: {}, status: :ok
+    else
       render json: @sub_category.errors, status: :unprocessable_entity
     end
   end

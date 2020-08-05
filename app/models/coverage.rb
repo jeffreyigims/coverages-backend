@@ -23,6 +23,7 @@ class Coverage < ApplicationRecord
   scope :for_broker, ->(broker_id) { joins(:coverage_brokers).where('broker_id = ?', broker_id) } 
   scope :for_club_group, ->(club_group_id) { where('club_group_id = ?', club_group_id) } 
   scope :for_user, ->(user_id) { where('user_id = ?', user_id) } 
+  scope :for_sub_category, ->(sub_category_id) { where('sub_category_id = ?', sub_category_id) } 
   scope :chronological, -> { order(Arel.sql('start_date DESC, end_date IS NOT NULL, end_date DESC')) }
   scope :most_recent, -> { order(Arel.sql('created_at DESC')) }
 

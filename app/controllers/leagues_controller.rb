@@ -29,7 +29,7 @@ class LeaguesController < ApplicationController
     @league = League.new(league_params)
     if @league.save
       render json: LeagueSerializer.new(@league).serializable_hash
-    else 
+    else
       render json: @league.errors, status: :unprocessable_entity
     end
   end
@@ -37,14 +37,16 @@ class LeaguesController < ApplicationController
   def update
     if @league.update(league_params)
       render json: LeagueSerializer.new(@league).serializable_hash
-    else 
+    else
       render json: @league.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     @league.destroy
-    if !@league.destroyed?
+    if @league.destroyed?
+      render json: {}, status: :ok
+    else
       render json: @league.errors, status: :unprocessable_entity
     end
   end
