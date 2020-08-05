@@ -45,7 +45,7 @@ class BrokersController < ApplicationController
   def destroy
     @broker.destroy
     if @broker.destroyed?
-      render json: {}, status: :ok
+      render json: BrokerSerializer.new(@broker).serializable_hash
     else
       render json: @broker.errors, status: :unprocessable_entity
     end
