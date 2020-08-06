@@ -1,4 +1,3 @@
-Resolving dependencies...
 class Coverage < ApplicationRecord
 
   # Relationships

@@ -6,6 +6,10 @@ class ClubSerializer
         object.club_groups.length
     end
 
+    attribute :coverages_count do |object|
+        object.coverages.length
+    end
+
     attribute :league do |object|
         object.league
     end
