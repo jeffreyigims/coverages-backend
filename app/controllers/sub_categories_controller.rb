@@ -45,7 +45,7 @@ class SubCategoriesController < ApplicationController
   def destroy
     @sub_category.destroy
     if @sub_category.destroyed?
-      render json: {}, status: :ok
+      render json: SubCategorySerializer.new(@sub_category).serializable_hash
     else
       render json: @sub_category.errors, status: :unprocessable_entity
     end

@@ -29,7 +29,7 @@ class CategoriesController < ApplicationController
     @category = Category.new(category_params)
     if @category.save
       render json: CategorySerializer.new(@category).serializable_hash
-    else 
+    else
       render json: @category.errors, status: :unprocessable_entity
     end
   end
@@ -37,14 +37,16 @@ class CategoriesController < ApplicationController
   def update
     if @category.update(category_params)
       render json: CategorySerializer.new(@category).serializable_hash
-    else 
+    else
       render json: @category.errors, status: :unprocessable_entity
     end
   end
 
   def destroy
     @category.destroy
-    if !@category.destroyed?
+    if @category.destroyed?
+      render json: @category
+    else
       render json: @category.errors, status: :unprocessable_entity
     end
   end

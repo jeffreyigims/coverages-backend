@@ -1,6 +1,6 @@
 class SubCategorySerializer
     include FastJsonapi::ObjectSerializer
-    attributes :id, :name, :category_id
+    attributes :id, :name, :category_id, :category
 
     attribute :associated_coverages do |object|
       object.coverages.length

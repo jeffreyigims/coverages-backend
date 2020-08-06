@@ -12,7 +12,7 @@ class ClubsController < ApplicationController
     @clubs = boolean_filter(Club.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @clubs = param_filter(@clubs, PARAM_FILTERING_PARAMS)
     @clubs = order(@clubs, ORDERING_PARAMS)
-    @clubs = @clubs.paginate(page: params[:page]).per_page(10)
+    # @clubs = @clubs.paginate(page: params[:page]).per_page(10)
     respond_to do |format|
       format.html { @clubs }
       format.json {
