@@ -8,7 +8,7 @@ class Category < ApplicationRecord
   scope :alphabetical, -> { order("name ASC") }
 
   # Validations
-  validates_uniqueness_of :name, case_sensitive: false # Validates presence of attribute as well
+  validates_uniqueness_of :name, case_sensitive: false, message: "Name must be unique" # Validates presence of attribute as well
 
   # Callbacks
   before_destroy do

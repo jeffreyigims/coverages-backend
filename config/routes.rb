@@ -113,7 +113,7 @@ Rails.application.routes.draw do
   # get "tables", to: "home#metrics", as: :tables
   # get "add_coverage", to: "home#add_coverage", as: :add_coverage
 
-  root "sports#index"
+  # root "sports#index"
   # get '*path', to: "application#fallback_index_html", constraints: ->(request) do
   #   !request.xhr? && request.format.html?
   # end
