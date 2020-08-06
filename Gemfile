@@ -52,3 +52,6 @@ gem "populator"
 gem "factory_bot_rails"
 # Use ActiveModel has_secure_password
 gem "bcrypt", "~> 3.1.7"
+# For validation of dates
+gem 'validates_timeliness', '4.0.2'
+gem 'time_date_helpers', '0.0.4'

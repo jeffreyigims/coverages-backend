@@ -21,8 +21,8 @@ class ClubGroupsController < ApplicationController
   def create
     @club_group = ClubGroup.new(club_group_params)
     if @club_group.save
-      render json: @club_group 
-    else 
+      render json: @club_group
+    else
       render json: @club_group.errors, status: :unprocessable_entity
     end
   end
@@ -31,7 +31,7 @@ class ClubGroupsController < ApplicationController
     @club_group.destroy
     if @club_group.destroyed?
       render json: @club_group
-    else 
+    else
       render json: @club_group.errors, status: :unprocessable_entity
     end
   end
