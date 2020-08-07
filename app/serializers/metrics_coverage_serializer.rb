@@ -2,7 +2,11 @@ class MetricsCoverageSerializer
   include FastJsonapi::ObjectSerializer
   attributes :id, :has_coverage_line, :verified
 
-  attribute :leagues do |object|
+  attribute :sport do |object|
+    object.sport.name
+  end
+
+  attribute :league do |object|
     object.league.name
   end
 
@@ -18,7 +22,7 @@ class MetricsCoverageSerializer
     object.category.name
   end
 
-  attribute :sub_category do |object|
+  attribute :sub do |object|
     object.sub_category.name
   end
 

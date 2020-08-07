@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  searchkick
+  Company.reindex
 
   # Relationships
   has_many :brokers

@@ -1,4 +1,6 @@
 class Broker < ApplicationRecord
+  searchkick
+  Broker.reindex
 
   # Relationships
   belongs_to :company

@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   delete "sports/:id", to: "sports#destroy"
 
   get "coverages", to: "coverages#index"
-  get "coverages/:id", to: "coverages#show", as: :coverage
+  get "coverages/:id", to: "coverages#show"
   post "coverages", to: "coverages#create"
   patch "coverages/:id", to: "coverages#update"
   patch "coverages/verify/:id", to: "coverages#verify"
@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   delete "leagues/:id", to: "leagues#destroy"
 
   get "clubs", to: "clubs#index"
-  get "clubs/:id", to: "clubs#show", as: :club
+  get "clubs/:id", to: "clubs#show"
   post "clubs", to: "clubs#create"
   patch "clubs/:id", to: "clubs#update"
   delete "clubs/:id", to: "clubs#destroy"
@@ -42,7 +42,7 @@ Rails.application.routes.draw do
   patch "categories/:id", to: "categories#update"
   delete "categories/:id", to: "categories#destroy"
 
-  get "sub_categories", to: "sub_categories#index"
+  # get "sub_categories", to: "sub_categories#index"
   get "sub_categories/:id", to: "sub_categories#show"
   post "sub_categories", to: "sub_categories#create"
   patch "sub_categories/:id", to: "sub_categories#update"
@@ -80,19 +80,20 @@ Rails.application.routes.draw do
 
   # Routes for intermediary tables 
   # We do not need to update or get individual entries
-  get "coverage_carriers", to: "coverage_carriers#index"
+  # get "coverage_carriers", to: "coverage_carriers#index"
   post "coverage_carriers", to: "coverage_carriers#create"
   delete "coverage_carriers/:id", to: "coverage_carriers#destroy"
 
-  get "coverage_brokers", to: "coverage_brokers#index"
+  # get "coverage_brokers", to: "coverage_brokers#index"
   post "coverage_brokers", to: "coverage_brokers#create"
   delete "coverage_brokers/:id", to: "coverage_brokers#destroy"
 
-  get "club_groups", to: "club_groups#index"
-  post "club_groups", to: "club_groups#create"
-  delete "club_groups/:id", to: "club_groups#destroy"
+  # get "club_groups", to: "club_groups#index"
+  # post "club_groups", to: "club_groups#create"
+  # delete "club_groups/:id", to: "club_groups#destroy"
 
   get "search", to: "search#search"
+  get "metrics", to: "metrics#metrics"
 
   # Routes for sessions
   # get "sessions", to: "sessions#index", as: :sessions

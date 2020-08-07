@@ -1,4 +1,6 @@
 class Category < ApplicationRecord
+  searchkick
+  Category.reindex
 
   # Relationships
   has_many :sub_categories
