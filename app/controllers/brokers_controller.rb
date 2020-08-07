@@ -12,17 +12,11 @@ class BrokersController < ApplicationController
     @brokers = boolean_filter(Broker.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @brokers = param_filter(@brokers, PARAM_FILTERING_PARAMS)
     @brokers = order(@brokers, ORDERING_PARAMS)
-    respond_to do |format|
-      format.html { @brokers }
-      format.json { render json: BrokerTableSerializer.new(@brokers).serializable_hash }
-    end
+    render json: BrokerTableSerializer.new(@brokers).serializable_hash
   end
 
   def show
-    respond_to do |format|
-      format.html { @broker }
-      format.json { render json: BrokerSerializer.new(@broker).serializable_hash }
-    end
+    render json: BrokerSerializer.new(@broker).serializable_hash
   end
 
   def create

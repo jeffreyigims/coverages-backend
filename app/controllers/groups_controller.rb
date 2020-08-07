@@ -12,17 +12,11 @@ class GroupsController < ApplicationController
     @groups = boolean_filter(Group.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @groups = param_filter(@groups, PARAM_FILTERING_PARAMS)
     @groups = order(@groups, ORDERING_PARAMS)
-    respond_to do |format|
-      format.html { @groups }
-      format.json { render json: GroupSerializer.new(@groups).serializable_hash }
-    end
+    render json: GroupSerializer.new(@groups).serializable_hash
   end
 
   def show
-    respond_to do |format|
-      format.html { @group }
-      format.json { render json: GroupSerializer.new(@group).serializable_hash }
-    end
+    render json: GroupSerializer.new(@group).serializable_hash 
   end
 
   def create
@@ -45,7 +39,7 @@ class GroupsController < ApplicationController
   def destroy
     @group.destroy
     if @group.destroyed?
-      render json: {}, status: :ok
+      render json: GroupSerializer.new(@group).serializable_hash
     else
       render json: @group.errors, status: :unprocessable_entity
     end

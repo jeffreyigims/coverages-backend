@@ -12,17 +12,11 @@ class UsersController < ApplicationController
     @users = boolean_filter(User.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @users = param_filter(@users, PARAM_FILTERING_PARAMS)
     @users = order(@users, ORDERING_PARAMS)
-    respond_to do |format|
-      format.html { @users }
-      format.json { render json: UserTableSerializer.new(@users).serializable_hash }
-    end
+    render json: UserTableSerializer.new(@users).serializable_hash
   end
 
   def show
-    respond_to do |format|
-      format.html { @user }
-      format.json { render json: UserSerializer.new(@user).serializable_hash }
-    end
+    render json: UserTableSerializer.new(@user).serializable_hash
   end
 
   def create
@@ -45,7 +39,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     if @user.destroyed?
-      render json: {}, status: :ok
+      render json: UserSerializer.new(@user).serializable_hash
     else
       render json: @user.errors, status: :unprocessable_entity
     end

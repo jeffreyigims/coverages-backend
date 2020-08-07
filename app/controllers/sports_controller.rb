@@ -12,22 +12,16 @@ class SportsController < ApplicationController
     @sports = boolean_filter(Sport.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @sports = param_filter(@sports, PARAM_FILTERING_PARAMS)
     @sports = order(@sports, ORDERING_PARAMS)
-    respond_to do |format|
-      format.html { @sports }
-      format.json { render json: SportSerializer.new(@sports).serializable_hash }
-    end
+    render json: SportSerializer.new(@sports).serializable_hash
   end
 
   def show
-    respond_to do |format|
-      format.html { @sport }
-      format.json { render json: SportSerializer.new(@sport).serializable_hash }
-    end
+    render json: SportSerializer.new(@sport).serializable_hash
   end
 
   def create
     @sport = Sport.new(sport_params)
-    if @sport.save!
+    if @sport.save
       render json: SportSerializer.new(@sport).serializable_hash
     else 
       render json: @sport.errors, status: :unprocessable_entity
@@ -45,7 +39,7 @@ class SportsController < ApplicationController
   def destroy
     @sport.destroy
     if @sport.destroyed?
-      render json: {}, status: :ok 
+      render json: SportSerializer.new(@sport).serializable_hash
     else 
       render json: @sport.errors, status: :unprocessable_entity
     end

@@ -13,23 +13,15 @@ class CoveragesController < ApplicationController
     @coverages = param_filter(@coverages, PARAM_FILTERING_PARAMS)
     @coverages = order(@coverages, ORDERING_PARAMS)
     @coverages = @coverages.paginate(page: params[:page]).per_page(10)
-    respond_to do |format|
-      format.html { @coverages }
-      format.json {
-        render json: {
-                 page: @coverages.current_page,
-                 pages: @coverages.total_pages,
-                 objects: CoverageSerializer.new(@coverages).serializable_hash,
-               }
-      }
-    end
+    render json: {
+      page: @coverages.current_page,
+      pages: @coverages.total_pages,
+      objects: CoverageSerializer.new(@coverages).serializable_hash,
+    }
   end
 
   def show
-    respond_to do |format|
-      format.html { @coverage }
-      format.json { render json: CoverageSerializer.new(@coverage).serializable_hash }
-    end
+    render json: CoverageSerializer.new(@coverage).serializable_hash
   end
 
   def create
@@ -56,7 +48,9 @@ class CoveragesController < ApplicationController
 
   def destroy
     @coverage.destroy
-    if !@coverage.destroyed?
+    if @coverage.destroyed?
+      render json: CoverageSerializer.new(@coverage).serializable_hash
+    else
       render json: @coverage.errors, status: :unprocessable_entity
     end
   end

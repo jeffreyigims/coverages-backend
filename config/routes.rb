@@ -92,6 +92,8 @@ Rails.application.routes.draw do
   post "club_groups", to: "club_groups#create"
   delete "club_groups/:id", to: "club_groups#destroy"
 
+  get "search", to: "search#search"
+
   # Routes for sessions
   # get "sessions", to: "sessions#index", as: :sessions
   # get "login", to: "sessions#new", as: :login

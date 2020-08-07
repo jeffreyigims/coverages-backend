@@ -12,17 +12,11 @@ class CompaniesController < ApplicationController
     @companies = boolean_filter(Company.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @companies = param_filter(@companies, PARAM_FILTERING_PARAMS)
     @companies = order(@companies, ORDERING_PARAMS)
-    respond_to do |format|
-      format.html { @companies }
-      format.json { render json: CompanySerializer.new(@companies).serializable_hash }
-    end
+    render json: CompanySerializer.new(@companies).serializable_hash
   end
 
   def show
-    respond_to do |format|
-      format.html { @company }
-      format.json { render json: CompanySerializer.new(@company).serializable_hash }
-    end
+    render json: CompanySerializer.new(@company).serializable_hash
   end
 
   def create
@@ -45,7 +39,7 @@ class CompaniesController < ApplicationController
   def destroy
     @company.destroy
     if @company.destroyed?
-      render json: {}, status: :ok
+      render json: CompanySerializer.new(@company).serializable_hash
     else
       render json: @company.errors, status: :unprocessable_entity
     end

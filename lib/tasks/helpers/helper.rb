@@ -148,7 +148,7 @@ module Populator
 
     def create_base
       puts("Create users")
-      @admin = FactoryBot.create(:user, first_name: "First", last_name: "Last", role: "admin", username: "user", password: "secret", password_confirmation: "secret")
+      @admin = FactoryBot.create(:user, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, role: "admin", username: "user", password: "secret", password_confirmation: "secret")
 
       puts("Create sports")
       @baseball = FactoryBot.create(:sport, name: "baseball")

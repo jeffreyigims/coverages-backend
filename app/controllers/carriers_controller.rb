@@ -12,24 +12,18 @@ class CarriersController < ApplicationController
     @carriers = boolean_filter(Carrier.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @carriers = param_filter(@carriers, PARAM_FILTERING_PARAMS)
     @carriers = order(@carriers, ORDERING_PARAMS)
-    respond_to do |format|
-      format.html { @carriers }
-      format.json { render json: CarrierTableSerializer.new(@carriers).serializable_hash }
-    end
-end
-
-def show 
-  respond_to do |format|
-    format.html { @carrier }
-    format.json { render json: CarrierSerializer.new(@carrier).serializable_hash }
+    render json: CarrierTableSerializer.new(@carriers).serializable_hash
   end
-end 
+
+  def show
+    render json: CarrierSerializer.new(@carrier).serializable_hash
+  end
 
   def create
     @carrier = Carrier.new(carrier_params)
     if @carrier.save
       render json: CarrierSerializer.new(@carrier).serializable_hash
-    else 
+    else
       render json: @carrier.errors, status: :unprocessable_entity
     end
   end
@@ -37,7 +31,7 @@ end
   def update
     if @carrier.update(carrier_params)
       render json: CarrierSerializer.new(@carrier).serializable_hash
-    else 
+    else
       render json: @carrier.errors, status: :unprocessable_entity
     end
   end
@@ -45,8 +39,8 @@ end
   def destroy
     @carrier.destroy
     if @carrier.destroyed?
-      render json: {}, status: :ok
-    else 
+      render json: CarrierSerializer.new(@carrier).serializable_hash
+    else
       render json: @carrier.errors, status: :unprocessable_entity
     end
   end

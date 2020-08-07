@@ -12,17 +12,11 @@ class CategoriesController < ApplicationController
     @categories = boolean_filter(Category.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @categories = param_filter(@categories, PARAM_FILTERING_PARAMS)
     @categories = order(@categories, ORDERING_PARAMS)
-    respond_to do |format|
-      format.html { @categories }
-      format.json { render json: CategorySerializer.new(@categories).serializable_hash }
-    end
+    render json: CategorySerializer.new(@categories).serializable_hash
   end
 
   def show
-    respond_to do |format|
-      format.html { @category }
-      format.json { render json: CategorySerializer.new(@category).serializable_hash }
-    end
+    render json: CategorySerializer.new(@category).serializable_hash 
   end
 
   def create
@@ -45,7 +39,7 @@ class CategoriesController < ApplicationController
   def destroy
     @category.destroy
     if @category.destroyed?
-      render json: @category
+      render json: CategorySerializer.new(@category).serializable_hash
     else
       render json: @category.errors, status: :unprocessable_entity
     end

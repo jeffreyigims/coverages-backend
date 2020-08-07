@@ -4,11 +4,11 @@ class Sport < ApplicationRecord
   has_many :leagues
   has_many :clubs, through: :leagues
 
-  # Validations
-  validates_presence_of :name
-
   # Scopes
   scope :alphabetical, -> { order("name ASC") }
+
+  # Validations
+  validates_uniqueness_of :name, case_sensitive: false, message: "must be unique" # Validates presence of attribute as well
 
   # Callbacks
   before_destroy do

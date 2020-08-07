@@ -12,17 +12,11 @@ class LeaguesController < ApplicationController
     @leagues = boolean_filter(League.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @leagues = param_filter(@leagues, PARAM_FILTERING_PARAMS)
     @leagues = order(@leagues, ORDERING_PARAMS)
-    respond_to do |format|
-      format.html { @leagues }
-      format.json { render json: LeagueSerializer.new(@leagues).serializable_hash }
-    end
+    render json: LeagueSerializer.new(@leagues).serializable_hash
   end
 
   def show
-    respond_to do |format|
-      format.html { @league }
-      format.json { render json: LeagueSerializer.new(@league).serializable_hash }
-    end
+    render json: LeagueSerializer.new(@league).serializable_hash
   end
 
   def create
@@ -45,7 +39,7 @@ class LeaguesController < ApplicationController
   def destroy
     @league.destroy
     if @league.destroyed?
-      render json: {}, status: :ok
+      render json: LeagueSerializer.new(@league).serializable_hash
     else
       render json: @league.errors, status: :unprocessable_entity
     end

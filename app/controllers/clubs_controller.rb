@@ -13,24 +13,16 @@ class ClubsController < ApplicationController
     @clubs = param_filter(@clubs, PARAM_FILTERING_PARAMS)
     @clubs = order(@clubs, ORDERING_PARAMS)
     # @clubs = @clubs.paginate(page: params[:page]).per_page(10)
-    respond_to do |format|
-      format.html { @clubs }
-      format.json {
-        # render json: {
+    # render json: {
         #          page: @clubs.current_page,
         #          pages: @clubs.total_pages,
         #          objects: ClubSerializer.new(@clubs).serializable_hash,
         #        }
         render json: ClubSerializer.new(@clubs).serializable_hash
-      }
-    end
   end
 
   def show
-    respond_to do |format|
-      format.html { @clubs }
-      format.json { render json: ClubSerializer.new(@club).serializable_hash }
-    end
+    render json: ClubSerializer.new(@club).serializable_hash
   end
 
   def create
@@ -53,7 +45,7 @@ class ClubsController < ApplicationController
   def destroy
     @club.destroy
     if @club.destroyed?
-      render json: {}, status: :ok
+      render json: ClubSerializer.new(@club).serializable_hash
     else
       render json: @club.errors, status: :unprocessable_entity
     end

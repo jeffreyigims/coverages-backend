@@ -12,17 +12,11 @@ class SubCategoriesController < ApplicationController
     @sub_categories = boolean_filter(SubCategory.alphabetical, BOOLEAN_FILTERING_PARAMS)
     @sub_categories = param_filter(@sub_categories, PARAM_FILTERING_PARAMS)
     @sub_categories = order(@sub_categories, ORDERING_PARAMS)
-    respond_to do |format|
-      format.html { @sub_categories }
-      format.json { render json: SubCategoryTableSerializer.new(@sub_categories).serializable_hash }
-    end
+    render json: SubCategoryTableSerializer.new(@sub_categories).serializable_hash
   end
 
   def show
-    respond_to do |format|
-      format.html { @sub_category }
-      format.json { render json: SubCategorySerializer.new(@sub_category).serializable_hash }
-    end
+    render json: SubCategoryTableSerializer.new(@sub_category).serializable_hash
   end
 
   def create
