@@ -16,7 +16,7 @@ class SubCategoriesController < ApplicationController
   end
 
   def show
-    render json: SubCategoryTableSerializer.new(@sub_category).serializable_hash
+    render json: SubCategorySerializer.new(@sub_category).serializable_hash
   end
 
   def create

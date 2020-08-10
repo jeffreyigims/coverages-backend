@@ -1,6 +1,6 @@
 class MetricsCoverageSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :has_coverage_line, :verified
+  attributes :has_coverage_line, :verified
 
   attribute :sport do |object|
     object.sport.name
