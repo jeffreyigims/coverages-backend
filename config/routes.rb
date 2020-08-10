@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  ''' We do not need names for the routes or routes to get new and edit pages since 
+  "" " We do not need names for the routes or routes to get new and edit pages since 
       we mainly use react components as the front end which make calls to the database 
-  '''
-  
+  " ""
+
   # Generic routes
   # We do not need routes to get new or update pages since those are handled by as components
   get "sports", to: "sports#index"
@@ -78,7 +78,7 @@ Rails.application.routes.draw do
   # patch "user_clubs/:id", to: "user_clubs#update"
   delete "user_clubs/:id", to: "user_clubs#destroy"
 
-  # Routes for intermediary tables 
+  # Routes for intermediary tables
   # We do not need to update or get individual entries
   # get "coverage_carriers", to: "coverage_carriers#index"
   post "coverage_carriers", to: "coverage_carriers#create"
@@ -89,7 +89,7 @@ Rails.application.routes.draw do
   delete "coverage_brokers/:id", to: "coverage_brokers#destroy"
 
   # get "club_groups", to: "club_groups#index"
-  # post "club_groups", to: "club_groups#create"
+  post "club_groups", to: "club_groups#create"
   # delete "club_groups/:id", to: "club_groups#destroy"
 
   get "search", to: "search#search"
@@ -101,7 +101,7 @@ Rails.application.routes.draw do
   # get "logout", to: "sessions#destroy", as: :logout
   # post "sessions", to: "sessions#create", as: :new_session
 
-  # get "metrics", to: "home#metrics", as: :metrics  
+  # get "metrics", to: "home#metrics", as: :metrics
   # get "charts", to: "metrics#chart", as: :charts
   # get "metrics", to: "metrics#metrics"
 

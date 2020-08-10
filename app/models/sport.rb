@@ -1,6 +1,5 @@
 class Sport < ApplicationRecord
   searchkick
-  Sport.reindex
 
   # Relationships
   has_many :leagues

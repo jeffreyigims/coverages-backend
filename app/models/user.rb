@@ -2,7 +2,6 @@ class User < ApplicationRecord
   include AppHelpers::Deletions
   has_secure_password
   searchkick
-  User.reindex
 
   # Relationships
   has_many :user_clubs

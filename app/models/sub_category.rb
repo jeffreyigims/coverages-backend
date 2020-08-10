@@ -1,6 +1,5 @@
 class SubCategory < ApplicationRecord
   searchkick
-  SubCategory.reindex
 
   # Relationships
   belongs_to :category

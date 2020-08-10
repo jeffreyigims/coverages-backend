@@ -1,6 +1,5 @@
 class Club < ApplicationRecord
   searchkick
-  Club.reindex
 
   # Relationships
   belongs_to :league

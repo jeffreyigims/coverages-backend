@@ -1,6 +1,5 @@
 class Group < ApplicationRecord
   searchkick
-  Group.reindex
 
   # Relationships
   has_many :club_groups

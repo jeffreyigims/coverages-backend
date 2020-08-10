@@ -1,6 +1,5 @@
 class Carrier < ApplicationRecord
   searchkick
-  Carrier.reindex
 
   # Relationships
   has_many :coverage_carriers
