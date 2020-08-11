@@ -44,12 +44,11 @@ class CoverageSerializer
     end
   end
 
-  # attribute :brokers do |object|
-  #     object.brokers.map do |broker|
-  #       CoverageBrokersSerializer.new(broker).serializable_hash
-  #     end
-  # end
-
+  attribute :brokers do |object|
+    object.brokers.map do |broker|
+      broker
+    end
+  end
 end
 
 class CoverageCoverageBrokerSerializer

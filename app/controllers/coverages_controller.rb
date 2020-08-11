@@ -1,4 +1,5 @@
 class CoveragesController < ApplicationController
+  before_action :authenticate_user
   before_action :set_coverage, only: [:show, :update, :verify, :destroy]
 
   include Filterable
@@ -30,8 +31,9 @@ class CoveragesController < ApplicationController
     if @coverage.save
       render json: CoverageSerializer.new(@coverage).serializable_hash
     else
-      render json: @coverage.errors, status: :unprocessable_entity
-    end
+      render json: { object: CoverageSerializer.new(@coverage).serializable_hash, errors: @coverage.errors }, status: :unprocessable_entity
+      # render json: @coverage.errors, status: :unprocessable_entity
+   end
   end
 
   def update

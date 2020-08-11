@@ -1,5 +1,5 @@
 class Coverage < ApplicationRecord
-
+  
   # Relationships
   belongs_to :club_group
   belongs_to :sub_category

@@ -1,5 +1,4 @@
 class League < ApplicationRecord
-  searchkick
 
   # Relationships
   belongs_to :sport

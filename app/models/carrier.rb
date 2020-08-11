@@ -1,5 +1,4 @@
 class Carrier < ApplicationRecord
-  searchkick
 
   # Relationships
   has_many :coverage_carriers

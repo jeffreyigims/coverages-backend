@@ -1,5 +1,4 @@
 class Company < ApplicationRecord
-  searchkick
 
   # Relationships
   has_many :brokers

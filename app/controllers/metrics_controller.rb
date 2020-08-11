@@ -1,4 +1,5 @@
 class MetricsController < ApplicationController
+  before_action :authenticate_user
   def metrics
     @coverages = []
     # if current_user.role?(:contact)

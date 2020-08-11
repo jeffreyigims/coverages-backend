@@ -1,5 +1,4 @@
 class SubCategory < ApplicationRecord
-  searchkick
 
   # Relationships
   belongs_to :category

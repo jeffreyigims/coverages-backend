@@ -1,4 +1,5 @@
 class CarriersController < ApplicationController
+  before_action :authenticate_user
   before_action :set_carrier, only: [:show, :update, :destroy]
 
   include Filterable

@@ -11,6 +11,14 @@ class User < ApplicationRecord
   # Scopes
   scope :alphabetical, -> { order("last_name, first_name") }
 
+  # Validations
+  validates_uniqueness_of :user_name, case_sensitive: false, message: "Username must be unique" # Validates presence of attribute as well
+  validates_inclusion_of :role, in: %w[admin employee contact], message: "is not an option"
+  validates_presence_of :password, on: :create
+  validates_presence_of :password_confirmation, on: :create
+  validates_confirmation_of :password, on: :create, message: "does not match"
+  validates_length_of :password, minimum: 4, message: "must be at least 4 characters long", allow_blank: true
+
   # Callbacks
   # Only allow destroy if no associated coverages and no associated contact
   # before_destroy -> { cannot_destroy_object() }
@@ -40,6 +48,16 @@ class User < ApplicationRecord
 
   def name
     "#{self.first_name} #{self.last_name}"
+  end
+
+  def self.from_token_request(request)
+    username = request.params["auth"] && request.params["auth"]["username"]
+    user = self.find_by username: username
+    if user.nil?
+      raise Knock.not_found_exception_class_name
+    else
+      return user
+    end
   end
 
   private

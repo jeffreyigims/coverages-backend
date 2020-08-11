@@ -1,5 +1,4 @@
 class Group < ApplicationRecord
-  searchkick
 
   # Relationships
   has_many :club_groups

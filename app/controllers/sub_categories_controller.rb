@@ -1,4 +1,5 @@
 class SubCategoriesController < ApplicationController
+  before_action :authenticate_user
   before_action :set_sub_category, only: [:show, :update, :destroy]
 
   include Filterable

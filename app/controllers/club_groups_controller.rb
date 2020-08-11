@@ -1,4 +1,5 @@
 class ClubGroupsController < ApplicationController
+  before_action :authenticate_user
   before_action :set_club_group, only: [:destroy]
 
   include Filterable

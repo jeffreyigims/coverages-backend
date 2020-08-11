@@ -1,4 +1,5 @@
 class LeaguesController < ApplicationController
+  before_action :authenticate_user
   before_action :set_league, only: [:update, :show, :destroy]
 
   include Filterable

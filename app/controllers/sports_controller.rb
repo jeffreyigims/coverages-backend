@@ -1,4 +1,5 @@
 class SportsController < ApplicationController
+  before_action :authenticate_user
   before_action :set_sport, only: [:show, :update, :destroy]
 
   include Filterable
@@ -23,7 +24,7 @@ class SportsController < ApplicationController
     @sport = Sport.new(sport_params)
     if @sport.save
       render json: SportSerializer.new(@sport).serializable_hash
-    else 
+    else
       render json: @sport.errors, status: :unprocessable_entity
     end
   end
@@ -40,7 +41,7 @@ class SportsController < ApplicationController
     @sport.destroy
     if @sport.destroyed?
       render json: SportSerializer.new(@sport).serializable_hash
-    else 
+    else
       render json: @sport.errors, status: :unprocessable_entity
     end
   end

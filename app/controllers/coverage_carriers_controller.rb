@@ -1,4 +1,5 @@
 class CoverageCarriersController < ApplicationController
+  before_action :authenticate_user
   before_action :set_coverage_carrier, only: [:destroy]
 
   def create

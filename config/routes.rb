@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  post 'user_token' => 'user_token#create'
   "" " We do not need names for the routes or routes to get new and edit pages since 
       we mainly use react components as the front end which make calls to the database 
   " ""

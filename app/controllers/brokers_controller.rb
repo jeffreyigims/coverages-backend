@@ -1,4 +1,5 @@
 class BrokersController < ApplicationController
+  before_action :authenticate_user
   before_action :set_broker, only: [:show, :update, :destroy]
 
   include Filterable
