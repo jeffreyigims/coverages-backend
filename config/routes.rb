@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  post 'user_token' => 'user_token#create'
   "" " We do not need names for the routes or routes to get new and edit pages since 
       we mainly use react components as the front end which make calls to the database 
   " ""
@@ -43,7 +42,6 @@ Rails.application.routes.draw do
   patch "categories/:id", to: "categories#update"
   delete "categories/:id", to: "categories#destroy"
 
-  # get "sub_categories", to: "sub_categories#index"
   get "sub_categories/:id", to: "sub_categories#show"
   post "sub_categories", to: "sub_categories#create"
   patch "sub_categories/:id", to: "sub_categories#update"
@@ -73,52 +71,21 @@ Rails.application.routes.draw do
   patch "users/:id", to: "users#update"
   delete "users/:id", to: "users#destroy"
 
-  # get "users", to: "users#index"
-  # get "users/:id", to: "users#show"
   post "user_clubs", to: "user_clubs#create"
-  # patch "user_clubs/:id", to: "user_clubs#update"
   delete "user_clubs/:id", to: "user_clubs#destroy"
 
   # Routes for intermediary tables
   # We do not need to update or get individual entries
-  # get "coverage_carriers", to: "coverage_carriers#index"
   post "coverage_carriers", to: "coverage_carriers#create"
   delete "coverage_carriers/:id", to: "coverage_carriers#destroy"
 
-  # get "coverage_brokers", to: "coverage_brokers#index"
   post "coverage_brokers", to: "coverage_brokers#create"
   delete "coverage_brokers/:id", to: "coverage_brokers#destroy"
 
-  # get "club_groups", to: "club_groups#index"
   post "club_groups", to: "club_groups#create"
-  # delete "club_groups/:id", to: "club_groups#destroy"
+  delete "club_groups/:id", to: "club_groups#destroy"
 
   get "search", to: "search#search"
   get "metrics", to: "metrics#metrics"
-
-  # Routes for sessions
-  # get "sessions", to: "sessions#index", as: :sessions
-  # get "login", to: "sessions#new", as: :login
-  # get "logout", to: "sessions#destroy", as: :logout
-  # post "sessions", to: "sessions#create", as: :new_session
-
-  # get "metrics", to: "home#metrics", as: :metrics
-  # get "charts", to: "metrics#chart", as: :charts
-  # get "metrics", to: "metrics#metrics"
-
-  # Dashboard route
-  # get "admin_dashboard", to: "dashboards#admin_dashboard", as: :admin_dashboard
-  # get "admin_dashboard_data", to: "dashboards#admin_dashboard_data", as: :admin_dashboard_data
-  # get "contact_dashboard", to: "dashboards#contact_dashboard", as: :contact_dashboard
-
-  # Home route
-  # get "home", to: "home#index", as: :home
-  # get 'home/search', to: 'home#search', as: :search
-  # get "tables", to: "home#metrics", as: :tables
-  # get "add_coverage", to: "home#add_coverage", as: :add_coverage
-
-  # root "sports#index"
-  # get '*path', to: "application#fallback_index_html", constraints: ->(request) do
-  #   !request.xhr? && request.format.html?
-  # end
+  post "user_token", to: "user_token#create"
 end
