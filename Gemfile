@@ -56,6 +56,6 @@ gem "bcrypt", "~> 3.1.7"
 gem 'validates_timeliness', '4.0.2'
 gem 'time_date_helpers', '0.0.4'
 # For search functionality 
-gem 'searchkick'
+gem 'pg_search'
 gem 'bcrypt', '~> 3.1.7'
 gem 'knock'

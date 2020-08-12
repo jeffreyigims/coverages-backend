@@ -1,4 +1,5 @@
 class Carrier < ApplicationRecord
+  multisearchable against: [:name]
 
   # Relationships
   has_many :coverage_carriers

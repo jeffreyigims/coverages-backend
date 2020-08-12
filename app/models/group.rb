@@ -1,4 +1,5 @@
 class Group < ApplicationRecord
+  multisearchable against: [:name]
 
   # Relationships
   has_many :club_groups

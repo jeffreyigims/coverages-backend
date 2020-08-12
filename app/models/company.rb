@@ -1,4 +1,5 @@
 class Company < ApplicationRecord
+  multisearchable against: [:name]
 
   # Relationships
   has_many :brokers

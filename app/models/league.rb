@@ -1,4 +1,5 @@
 class League < ApplicationRecord
+  multisearchable against: [:name]
 
   # Relationships
   belongs_to :sport

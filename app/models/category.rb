@@ -1,4 +1,5 @@
 class Category < ApplicationRecord
+  multisearchable against: [:name]
 
   # Relationships
   has_many :sub_categories

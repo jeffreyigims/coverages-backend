@@ -1,4 +1,5 @@
 class SubCategory < ApplicationRecord
+  multisearchable against: [:name]
 
   # Relationships
   belongs_to :category

@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   include AppHelpers::Deletions
   has_secure_password
-  searchkick
+  multisearchable against: [:first_name, :last_name]
 
   # Relationships
   has_many :user_clubs
@@ -12,7 +12,7 @@ class User < ApplicationRecord
   scope :alphabetical, -> { order("last_name, first_name") }
 
   # Validations
-  validates_uniqueness_of :user_name, case_sensitive: false, message: "Username must be unique" # Validates presence of attribute as well
+  validates_uniqueness_of :username, case_sensitive: false, message: "Username must be unique" # Validates presence of attribute as well
   validates_inclusion_of :role, in: %w[admin employee contact], message: "is not an option"
   validates_presence_of :password, on: :create
   validates_presence_of :password_confirmation, on: :create

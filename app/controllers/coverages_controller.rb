@@ -27,13 +27,13 @@ class CoveragesController < ApplicationController
 
   def create
     @coverage = Coverage.new(coverage_params)
-    @coverage.user_id = 1
+    @coverage.user_id = current_user.id
     if @coverage.save
       render json: CoverageSerializer.new(@coverage).serializable_hash
     else
       render json: { object: CoverageSerializer.new(@coverage).serializable_hash, errors: @coverage.errors }, status: :unprocessable_entity
       # render json: @coverage.errors, status: :unprocessable_entity
-   end
+    end
   end
 
   def update
