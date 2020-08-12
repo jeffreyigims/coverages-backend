@@ -22,7 +22,7 @@ class Company < ApplicationRecord
 
   def verify_no_brokers_associated_with_company
     unless self.brokers.empty?
-      errors.add(:base, "The broker has associated coverages and cannot be deleted now.")
+      errors.add(:base, "The company has associated brokers and cannot be deleted now.")
     end
   end
 end
