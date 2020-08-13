@@ -148,7 +148,12 @@ module Populator
 
     def create_base
       puts("Create users")
-      @admin = FactoryBot.create(:user, first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, role: "admin", username: "user", password: "secret", password_confirmation: "secret")
+      FactoryBot.create(:user, first_name: "Colin", last_name: "Marks", role: "admin", username: "cmarks", password: "secret", password_confirmation: "secret")
+      FactoryBot.create(:user, first_name: "Richard", last_name: "Humphrey", role: "admin", username: "rhumphrey", password: "secret", password_confirmation: "secret")
+      FactoryBot.create(:user, first_name: "Dave", last_name: "Webster", role: "admin", username: "dwebster", password: "secret", password_confirmation: "secret")
+      FactoryBot.create(:user, first_name: "Ryan", last_name: "Gaughan", role: "admin", username: "rgaughan", password: "secret", password_confirmation: "secret")
+      FactoryBot.create(:user, first_name: "Jeffrey", last_name: "Igims", role: "admin", username: "jigims", password: "secret", password_confirmation: "secret")
+      FactoryBot.create(:user, first_name: "Grise", last_name: "Brian", role: "admin", username: "bgrise", password: "secret", password_confirmation: "secret")
 
       puts("Create sports")
       @baseball = FactoryBot.create(:sport, name: "baseball")
@@ -163,17 +168,26 @@ module Populator
                    "Minnesota Twins", "New York Yankees", "New York Mets", "Oakland Athletics", "Philadelphia Phillies",
                    "Pittsburgh Pirates", "San Diego Padres", "San Francisco Giants", "Seattle Mariners", "St. Louis Cardinals",
                    "Tampa Bay Rays", "Texas Rangers", "Toronto Blue Jays", "Washington Nationals"]
+      milb_teams = ["Aberdeen IronBirds", "Akron Rubberducks", "Albuquerque Isotopes", "Altoona Curve", "Amarillo Sod Poodles", "Appalachian League",
+                    "Arkansas Travelers", "Asheville Tourists", "Auburn Doubledays", "Augusta GreenJackets", "Batavia Muckdogs", "Beloit Snappers",
+                    "Billings Mustangs", "Biloxi Shuckers", "Binghampton Rumble Ponies", "Birmingham Barons"]
       carriers = ["BCC", "Highmark", "United Concordia", "Davis Vision", "PFS", "Lloyds", "TMHCC", "MetLife", "Guardian",
                   "Dearborn", "Unum", "ProBenefits", "Benefits Administrators", "The Standard"]
 
       puts("Create groups")
       @players = FactoryBot.create(:group, name: "players")
       @front_office = FactoryBot.create(:group, name: "front office")
+      @baseball_operations = FactoryBot.create(:group, name: "baseball operations")
 
       puts("Create clubs")
       cg = []
       for team in mlb_teams
         @club = FactoryBot.create(:club, name: team, abbreviation: "", league: @baseball_mlb)
+        cg.append(FactoryBot.create(:club_group, club: @club, group: @players))
+        cg.append(FactoryBot.create(:club_group, club: @club, group: @front_office))
+      end
+      for team in milb_teams
+        @club = FactoryBot.create(:club, name: team, abbreviation: "", league: @baseball_milb)
         cg.append(FactoryBot.create(:club_group, club: @club, group: @players))
         cg.append(FactoryBot.create(:club_group, club: @club, group: @front_office))
       end
@@ -185,8 +199,20 @@ module Populator
       end
 
       puts("Create companies")
-      @company = FactoryBot.create(:company, name: "Team Scotti")
-      @broker = FactoryBot.create(:broker, name: "John Scotti", company: @company)
+      @scotti = FactoryBot.create(:company, name: "Team Scotti")
+      @mj = FactoryBot.create(:company, name: "MJ Insurance")
+      @associated = FactoryBot.create(:company, name: "Associated Administrators")
+      @bwd = FactoryBot.create(:company, name: "BWD")
+      @wtw = FactoryBot.create(:company, name: "WTW")
+      @malley = FactoryBot.create(:company, name: "O'Malley Group")
+
+      puts("Create brokers")
+      FactoryBot.create(:broker, name: "John Scotti", company: @scotti)
+      FactoryBot.create(:broker, name: "General", company: @mj)
+      FactoryBot.create(:broker, name: "General", company: @associated)
+      FactoryBot.create(:broker, name: "General", company: @bwd)
+      FactoryBot.create(:broker, name: "General", company: @wtw)
+      FactoryBot.create(:broker, name: "General", company: @malley)
 
       puts("Create categories")
       @life = FactoryBot.create(:category, name: "DI & Life")
@@ -207,18 +233,6 @@ module Populator
 
       for sub in subs[1]
         FactoryBot.create(:sub_category, name: sub, category: @group_health)
-      end
-
-      100.times do
-        club_group = cg[rand(cg.length)]
-        carrier = carrier_objects[0]
-        broker = @broker
-        category = sub_objects[rand(sub_objects.length)]
-        verified = rand(2) == 1 ? true : false
-        user = @admin
-        @coverage = FactoryBot.create(:coverage, club_group: club_group, sub_category: category, verified: verified, user: user)
-        FactoryBot.create(:coverage_broker, coverage: @coverage, broker: broker)
-        FactoryBot.create(:coverage_carrier, coverage: @coverage, carrier: carrier)
       end
     end
   end
