@@ -31,8 +31,7 @@ class CoveragesController < ApplicationController
     if @coverage.save
       render json: CoverageSerializer.new(@coverage).serializable_hash
     else
-      render json: { object: CoverageSerializer.new(@coverage).serializable_hash, errors: @coverage.errors }, status: :unprocessable_entity
-      # render json: @coverage.errors, status: :unprocessable_entity
+      render json: @coverage.errors, status: :unprocessable_entity
     end
   end
 

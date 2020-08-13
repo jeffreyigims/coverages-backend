@@ -14,6 +14,10 @@ class CoverageSerializer
     object.club_group.group
   end
 
+  attribute :club_group do |object|
+    object.club_group
+  end
+
   attribute :category do |object|
     object.category
   end
