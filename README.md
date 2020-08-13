@@ -3,7 +3,7 @@
 # Coverages Project
 
 ## Description 
-This application encapsulates the backend support for the coverages project. The application is build on Ruby on Rails and is structured as an API. Cross-origin resource is sharing is allowed and security is handled by JSON web token authentication. Most data is serialized before being sent to the front-end application with the use of 'fast_json' gem.
+This application encapsulates the backend support for the coverages project. The application is built on Ruby on Rails and is structured as an API. Cross-origin resource is sharing is allowed and security is handled by JSON web token authentication. Most data is serialized before being sent to the front-end application with the use of 'fast_json' gem.
 
 ## Data Populating
 To populate the database simply run ```ruby rails db:populate ```. There are multiple methods to populate the data. To view the methods, navigate to lib/tasks/helper/helper.rb and to specify a method to be called, navigate to lib/tasks/populate.rake and uncomment out the preferred method.
