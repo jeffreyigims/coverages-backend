@@ -88,7 +88,7 @@ ActiveRecord::Schema.define(version: 2020_08_11_205030) do
   end
 
   create_table "coverages", force: :cascade do |t|
-    t.boolean "has_coverage_line"
+    t.string "has_coverage_line"
     t.string "notes"
     t.date "start_date"
     t.date "end_date"

@@ -140,7 +140,7 @@ module Populator
         category = categories[rand(categories.length)]
         verified = rand(2) == 1 ? true : false
         user = users[rand(3)]
-        @coverage = FactoryBot.create(:coverage, club_group: club_group, sub_category: category, verified: verified, user: user)
+        @coverage = FactoryBot.create(:coverage, club_group: club_group, sub_category: category, verified: verified, user: user, has_coverage_line: "yes")
         FactoryBot.create(:coverage_broker, coverage: @coverage, broker: broker)
         FactoryBot.create(:coverage_carrier, coverage: @coverage, carrier: carrier)
       end

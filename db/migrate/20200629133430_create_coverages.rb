@@ -1,7 +1,7 @@
 class CreateCoverages < ActiveRecord::Migration[5.2]
   def change
     create_table :coverages do |t|
-      t.boolean :has_coverage_line
+      t.string :has_coverage_line
       t.string :notes
       t.date :start_date
       t.date :end_date

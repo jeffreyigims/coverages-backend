@@ -1,5 +1,5 @@
 class Coverage < ApplicationRecord
-  
+
   # Relationships
   belongs_to :club_group
   belongs_to :sub_category
@@ -28,8 +28,9 @@ class Coverage < ApplicationRecord
   scope :most_recent, -> { order(Arel.sql("created_at DESC")) }
 
   # Validations
-  validates_date :start_date
+  validates_date :start_date, allow_blank: true
   validates_date :end_date, on_or_after: :start_date, allow_blank: true, on_or_after_message: "The end date must be after the start date."
+  validates_inclusion_of :has_coverage_line, in: %w[yes no unknown], message: "is not an option"
 
   # Callbacks
   before_destroy :destroy_attachments
