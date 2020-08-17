@@ -6,11 +6,11 @@ class CoveragesController < ApplicationController
   include Orderable
 
   BOOLEAN_FILTERING_PARAMS = [[:verified, :unverified]]
-  PARAM_FILTERING_PARAMS = [:for_league, :for_club, :for_club_group, :for_carrier, :for_broker, :for_user, :for_sub_category, :for_broker]
-  ORDERING_PARAMS = []
+  PARAM_FILTERING_PARAMS = [:for_league, :for_club, :for_group, :for_club_group, :for_carrier, :for_broker, :for_user, :for_category, :for_sub_category, :for_broker]
+  ORDERING_PARAMS = [:most_recent, :most_recently_updated, :end_date, :start_date]
 
   def index
-    @coverages = boolean_filter(Coverage.most_recent, BOOLEAN_FILTERING_PARAMS)
+    @coverages = boolean_filter(Coverage, BOOLEAN_FILTERING_PARAMS)
     @coverages = param_filter(@coverages, PARAM_FILTERING_PARAMS)
     @coverages = order(@coverages, ORDERING_PARAMS)
     @coverages = @coverages.paginate(page: params[:page]).per_page(10)
