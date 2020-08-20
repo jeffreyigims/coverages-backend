@@ -5,7 +5,7 @@ class CategoriesController < ApplicationController
   include Filterable
   include Orderable
 
-  BOOLEAN_FILTERING_PARAMS = [[]]
+  BOOLEAN_FILTERING_PARAMS = []
   PARAM_FILTERING_PARAMS = []
   ORDERING_PARAMS = []
 
